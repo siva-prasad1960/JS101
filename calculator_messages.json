@@ -1,0 +1,22 @@
+{
+  "English" : {
+    "first Number" : "What's the first number?",
+    "second Number" : "What's the second number?",
+    "what operation" : "What operation would you like to perform?\n1) Add 2) Subtract 3) Multiply 4) Divide",
+    "another operation" : "Would you like to perform another calculation? (yes/no)",
+    "invalid number" : "Hmm... that doesn't look like a valid number.",
+    "choose number" : "Must choose 1, 2, 3, 4",
+    "welcome" : "Welcome to Calculator!",
+    "result" : "The result is:"
+  },
+  "Spanish": {
+    "first Number" : "cual es el primer numero",
+    "second Number" : "cual es el segundo numero?",
+    "what operation" : "¿Qué operación numérica le gustaría realizar?\n1) agregar 2) sustraer 3) multiplicar 4) dividir",
+    "another operation" : "¿Le gustaría realizar otro cálculo? (si/no)",
+    "invalid number" : "Hmm... Eso no parece un número válido.",
+    "choose number" : "Debe elegir 1, 2, 3, 4",
+    "welcome" : "Bienvenida a la calculadora",
+    "result" : "El resultado es"
+  }
+}
