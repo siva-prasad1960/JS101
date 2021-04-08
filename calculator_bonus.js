@@ -3,10 +3,12 @@ let jsonMessages = require('./calculator_messages.json');
 
 let readline = require('readline-sync');
 
+// function for => 
 function prompt(message) {
   console.log(`=> ${message}`);
 }
 
+// function to check for valid integers
 function invalidNumber(number) {
   return number.trimStart() === '' || Number.isNaN(Number(number));
 }
@@ -14,78 +16,72 @@ function invalidNumber(number) {
 prompt("which language would you prefer?\n1) English 2) Española");
 let language = readline.question();
 
+// function for language choice 10 en 2) ep
 function languageChoice() {
-  prompt("which language would you prefer?\n1) English 2) Española");
+  prompt("which languages would you prefer?\n1) English 2) Española");
   language = readline.question();
+  if (!'12'.includes(language)) {
+    languageChoice();
+  }
 }
 
+// functiom for json inner structures check
+function languageChecks(name) {
+  if (language === '1') {
+    prompt(jsonMessages['English'][name]);
+  } else if (language === '2') {
+    prompt(jsonMessages['Spanish'][name]);
+  }
+}
 
 if (language === '1') {
   prompt(jsonMessages['English']['welcome']);
-} else {
+} else if (language === '2') {
   prompt(jsonMessages['Spanish']['welcome']);
+} else {
+  languageChoice();
 }
 
 
 let number1;
 
+// function for first number
 function firstNumber() {
-  if (language === '1') {
-    prompt(jsonMessages['English']['first Number']);
-  } else {
-    prompt(jsonMessages['Spanish']['first Number']);
-  }
+  languageChecks('first Number');
   number1 = readline.question();
   while (invalidNumber(number1)) {
-    if (language === '1') {
-      prompt(jsonMessages['English']['invalid number']);
-    } else {
-      prompt(jsonMessages['Spanish']['invalid number']);
-    }
+    languageChecks('invalid number');
     number1 = readline.question();
   }
 }
 
 let number2;
 
+// function for second number
 function secondNumber() {
-  if (language === '1') {
-    prompt(jsonMessages['English']['second Number']);
-  } else {
-    prompt(jsonMessages['Spanish']['second Number']);
-  }
+  languageChecks('second Number');
   number2 = readline.question();
   while (invalidNumber(number2)) {
-    if (language === '1') {
-      prompt(jsonMessages['English']['invalid number']);
-    } else {
-      prompt(jsonMessages['Spanish']['invalid number']);
-    }
+    languageChecks('invalid number');
     number2 = readline.question();
   }
 }
 
 let operationNeeded;
 
+// function for choosing arthimetic operations
 function operation() {
-  if ( language === '1') {
-    prompt(jsonMessages['English']['what operation']);
-  } else {
-    prompt(jsonMessages['Spanish']['what operation']);
-  }
+  languageChecks('what operation');
   operationNeeded = readline.question();
   while (!['1', '2', '3', '4'].includes(operationNeeded)) {
-    if (language === '1') {
-      prompt(jsonMessages['English']['choose number']);
-    } else {
-      prompt(jsonMessages['Spanish']['choose number']);
-    }
+    languageChecks('choose number');
     operationNeeded = readline.question();
   }
 }
 
 let output;
 
+// function for performing arthimetic operations
 function result() {
   console.log(`${Number(number1)}, ${Number(number2)}`);
   switch (operationNeeded) {
@@ -99,6 +95,9 @@ function result() {
       output = Number(number1) * Number(number2);
       break;
     case '4':
+      if (Number(number2) === 0) {
+        console.log('Infinity');
+      }
       output = Number(number1) / Number(number2);
       break;
   }
@@ -106,29 +105,25 @@ function result() {
 
 let answer;
 
-// eslint-disable-next-line max-lines-per-function
+// function for subsequent round of arthimetic calculations
 function anotherCalculation() {
   languageChoice();
-  if (language === '1') {
-    prompt(jsonMessages['English']['another operation']);
-  } else {
-    prompt(jsonMessages['Spanish']['another operation']);
-  }
+  languageChecks('another operation');
   answer = readline.question();
   if (answer.toLowerCase() === 'yes' || answer.toLowerCase() === 'si') {
     firstNumber();
     secondNumber();
     operation();
     result();
-    if (language === '1') {
-      prompt(jsonMessages['English']['result']);
-    } else {
-      prompt(jsonMessages['Spanish']['result']);
-    }
+    languageChecks('result');
     console.log(output);
     anotherCalculation();
   } else if (answer.toLowerCase() === 'no') {
     prompt('OK');
+  // eslint-disable-next-line no-constant-condition
+  } else if (answer.toLowerCase() !== 'yes' || 'no' || 'si') {
+    prompt("Please answer 'yes', 'no' 'si'");
+    anotherCalculation();
   }
 }
 
@@ -136,11 +131,7 @@ firstNumber();
 secondNumber();
 operation();
 result();
-if (language === '1') {
-  prompt(jsonMessages['English']['result']);
-} else {
-  prompt(jsonMessages['Spanish']['result']);
-}
+languageChecks('result');
 console.log(output);
 anotherCalculation();
 
