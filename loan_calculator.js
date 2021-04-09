@@ -107,7 +107,7 @@ function anotherCalculation() {
     monthlyPayment(loanDurationInMonths, monthlyRate, loanAmountInDollars);
     dollarCents(monthlyPay);
     anotherCalculation();
-  } else if (answer.toLowerCase() === 'no' || answer.toLowerCase() === 'n') {
+  } else {
     prompt("Good Bye!");
   }
 }
