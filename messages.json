@@ -1,5 +1,5 @@
 {
   "loan amount" : "What's the loan amount in dollars? Ex : 2000.45 dollar(s)",
   "annual rate" : "What's the Annual Percentage Rate? Ex : 5.46% or 5.46 %",
-  "loan duration" : "What's the loan duration in Years? 2.5 year(s)"
+  "loan duration" : "What's the loan duration in Years? Ex : 2.5 year(s)"
 }
