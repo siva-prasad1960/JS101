@@ -55,8 +55,8 @@ function formatValid(str, regexp, message) {
 // function to convert loan duration from years to months.
 let loanDurationInMonths;
 
-function loanDurationYearToMonth(x) {
-  let loanList = x.match(regExpLoanDurationYears)[1].split('.');
+function loanDurationYearToMonth(time) {
+  let loanList = time.match(regExpLoanDurationYears)[1].split('.');
   if (Number(loanList[1] !== undefined)) {
     loanDurationInMonths = (Number(loanList[0]) * 12) + Number(loanList[1]);
   } else {
