@@ -21,6 +21,7 @@ function prompt(greeting) {
   console.log(`=> ${greeting}`);
 }
 
+// function for lead question to users for input.
 function intialMessages() {
   prompt(jsonMessages['loan amount']);
   loanAmountInDollars = readline.question();
@@ -93,7 +94,6 @@ function dollarCents(pay) {
 // function for another user calculation.
 let answer;
 
-
 function anotherCalculation() {
   prompt("Do you want to perform another calculation?");
   answer = readline.question();
@@ -111,6 +111,8 @@ function anotherCalculation() {
     prompt("Good Bye!");
   }
 }
+
+// Program Flow.
 
 intialMessages();
 formatValid(loanAmountInDollars, regExpLoanAmount, jsonMessages['loan amount']);
