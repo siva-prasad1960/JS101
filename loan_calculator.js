@@ -12,7 +12,7 @@ prompt("Welcome to loan calculator!");
 
 let loanAmountInDollars;
 
-let AnnualRateInPercentage;
+let annualRateInPercentage;
 
 let loanDurationInYears;
 
@@ -21,35 +21,29 @@ function prompt(greeting) {
   console.log(`=> ${greeting}`);
 }
 
-// function for lead question to users for input.
-function intialMessages() {
-  prompt(jsonMessages['loan amount']);
-  loanAmountInDollars = readline.question();
-
-  prompt(jsonMessages['annual rate']);
-  AnnualRateInPercentage = readline.question();
-
-  prompt(jsonMessages['loan duration']);
-  loanDurationInYears = readline.question();
+function intialMessages(str, regexp, message) {
+  if (message === jsonMessages['loan amount']) {
+    prompt(jsonMessages['loan amount']);
+    loanAmountInDollars = readline.question();
+    str = loanAmountInDollars;
+    formatValid(str, regexp, message);
+  } else if (message === jsonMessages['annual rate']) {
+    prompt(jsonMessages['annual rate']);
+    annualRateInPercentage = readline.question();
+    str = annualRateInPercentage;
+    formatValid(str, regexp, message);
+  } else if (message === jsonMessages['loan duration']) {
+    prompt(jsonMessages['loan duration']);
+    loanDurationInYears = readline.question();
+    str = loanDurationInYears;
+    formatValid(str, regexp, message);
+  }
 }
 
 // function to validate the user input.
 function formatValid(str, regexp, message) {
   if (!regexp.test(str)) {
-    prompt(message);
-    if (message === jsonMessages['loan amount']) {
-      loanAmountInDollars = readline.question();
-      str = loanAmountInDollars;
-      formatValid(str, regexp, message);
-    } else if (message === jsonMessages['annual rate']) {
-      AnnualRateInPercentage = readline.question();
-      str = AnnualRateInPercentage;
-      formatValid(str, regexp, message);
-    } else if (message === jsonMessages['loan duration']) {
-      loanDurationInYears = readline.question();
-      str = loanDurationInYears;
-      formatValid(str, regexp, message);
-    }
+    intialMessages(str, regexp, message);
   }
 }
 
@@ -98,28 +92,27 @@ function anotherCalculation() {
   prompt("Do you want to perform another calculation?");
   answer = readline.question();
   if (answer.toLowerCase() === 'yes' || answer.toLowerCase() === 'y') {
-    intialMessages();
-    formatValid(loanAmountInDollars, regExpLoanAmount, jsonMessages['loan amount']);
-    formatValid(AnnualRateInPercentage, regExpAnnualRate, jsonMessages['annual rate']);
-    formatValid(loanDurationInYears, regExpLoanDurationYears, jsonMessages['loan duration']);
-    loanDurationYearToMonth(loanDurationInYears);
-    monthlyInterestRate(AnnualRateInPercentage);
-    monthlyPayment(loanDurationInMonths, monthlyRate, loanAmountInDollars);
-    dollarCents(monthlyPay);
-    anotherCalculation();
+    programFLow();
   } else {
     prompt("Good Bye!");
   }
 }
 
 // Program Flow.
+function programFLow() {
+  intialMessages(loanAmountInDollars, regExpLoanAmount, jsonMessages['loan amount']);
+  intialMessages(annualRateInPercentage, regExpAnnualRate, jsonMessages['annual rate']);
+  intialMessages(loanDurationInYears, regExpLoanDurationYears, jsonMessages['loan duration']);
+  loanDurationYearToMonth(loanDurationInYears);
+  monthlyInterestRate(annualRateInPercentage);
+  monthlyPayment(loanDurationInMonths, monthlyRate, loanAmountInDollars);
+  dollarCents(monthlyPay);
+  anotherCalculation();
+}
 
-intialMessages();
-formatValid(loanAmountInDollars, regExpLoanAmount, jsonMessages['loan amount']);
-formatValid(AnnualRateInPercentage, regExpAnnualRate, jsonMessages['annual rate']);
-formatValid(loanDurationInYears, regExpLoanDurationYears, jsonMessages['loan duration']);
-loanDurationYearToMonth(loanDurationInYears);
-monthlyInterestRate(AnnualRateInPercentage);
-monthlyPayment(loanDurationInMonths, monthlyRate, loanAmountInDollars);
-dollarCents(monthlyPay);
-anotherCalculation();
+
+let initiation = 1;
+
+if (initiation === 1) {
+  programFLow();
+}
