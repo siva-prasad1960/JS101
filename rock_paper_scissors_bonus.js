@@ -60,7 +60,7 @@ do {
     choice = readline.question();
   }
 
-  // statement to convert SHORTHAND choice to FULL choice names.
+  // statement to convert SHORTHAND to FULL choice names for user display msg.
   switch (choice) {
     case 'r':
       choice = 'rock';
