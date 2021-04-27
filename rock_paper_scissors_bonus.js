@@ -32,7 +32,7 @@ function updateScore(finalCall) {
 
 //function to print tally at the end of each match.
 function displayTally() {
-  prompt(`Your score is: ${userScore}, computer score is ${computerScore}`);
+  prompt(`Your score is: ${userScore}, Computer score is: ${computerScore}`);
 }
 
 // function for checking if user or computer reaches to WIN_SCORE wins first.
@@ -50,6 +50,7 @@ function checkInWinner() {
 prompt(`Welcome to the game of ${VALID_CHOICES}, race to ${WIN_SCORE} between you and the computer.`);
 let answer;
 
+// Game flow
 do {
   prompt(`Choose one: ${VALID_CHOICES.join(', ')} or ${VALID_CHOICES_SHORTHAND.join(', ')}`);
   let choice = readline.question().toLowerCase();
