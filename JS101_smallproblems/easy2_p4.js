@@ -1,5 +1,9 @@
-function square(a) {
-  return a * a;
+function multiply(a, b) {
+  return a * b;
 }
 
-console.log(square(-8));
+function square(a) {
+  return multiply(a, a);
+}
+
+console.log(square(5));
