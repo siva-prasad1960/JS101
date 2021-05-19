@@ -1,6 +1,7 @@
 const readline = require('readline-sync');
 const USER_NUMBER = 'Please enter an integer greater than 0: ';
 const USER_STRING = 'Enter "s" to compute the sum or "p" to compute the product. ';
+const VALID_STR_INPUT = ['s', 'p'];
 
 function prompt(message) {
   console.log(`=> ${message}`);
@@ -16,7 +17,7 @@ while (number <= 0) {
 
 prompt(USER_STRING);
 let operationSelected = readline.question();
-while (!['s', 'p'].includes(operationSelected)) {
+while (!VALID_STR_INPUT.includes(operationSelected)) {
   prompt(USER_STRING);
   operationSelected = readline.question();
 }
@@ -30,10 +31,10 @@ function sumOrProduct(num, operation) {
   }
   if (operation === 's') {
     let sumOfElements = arr.reduce((acc, value) => acc + value);
-    console.log(`The sum of integers between 1 and ${num} is ${sumOfElements}`);
+    prompt(`The sum of integers between 1 and ${num} is ${sumOfElements}`);
   } else {
     let productOfElements = arr.reduce((acc, value) => acc * value);
-    console.log(`The product of the integers between 1 and ${num} is ${productOfElements}`);
+    prompt(`The product of the integers between 1 and ${num} is ${productOfElements}`);
   }
 }
 
